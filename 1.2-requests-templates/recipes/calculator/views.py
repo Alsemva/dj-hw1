@@ -19,6 +19,35 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
+
+def calculate_ingredient(data, count):
+    result = dict()
+    if count:
+        for ingredient, amount in data.items():
+            result[ingredient] = amount * count
+        return result
+    return data
+
+
+def omlet(request):
+    count = int(request.GET.get("servings", 0))
+    context = {'recipe': calculate_ingredient(DATA['omlet'], count)}
+    return render(request, 'calculator/index.html', context)
+
+
+def pasta(request):
+    count = int(request.GET.get("servings", 0))
+    context = {'recipe': calculate_ingredient(DATA['pasta'], count)}
+    print(context)
+    return render(request, 'calculator/index.html', context)
+
+
+def buter(request):
+    count = int(request.GET.get("servings", 0))
+    context = {'recipe': calculate_ingredient(DATA['buter'], count)}
+    print(context)
+    return render(request, 'calculator/index.html', context)
+
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть передан словарь с рецептом:
