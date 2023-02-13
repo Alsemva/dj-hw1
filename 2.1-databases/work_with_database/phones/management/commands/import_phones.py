@@ -12,7 +12,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         with open('phones.csv', 'r') as file:
             phones = list(csv.DictReader(file, delimiter=';'))
-            print(phones)
 
         for phone in phones:
             # TODO: Добавьте сохранение модели
@@ -25,7 +24,7 @@ class Command(BaseCommand):
                 lte_exists=phone['lte_exists'],
                 slug=slugify(phone['name']))
             new_phone.save()
-        return print('True!!!!!!!!!!!!!!!!!!')
+        return print('Status: OK')
     # def handle(self, *args, **options):
     #     with open('phones.csv', 'r') as csvfile:
     #
